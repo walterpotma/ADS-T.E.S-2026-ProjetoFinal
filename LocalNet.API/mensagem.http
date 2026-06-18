@@ -1,0 +1,26 @@
+### Listar mensagens por grupo
+GET http://localhost:8080/api/mensagem/456
+
+### Criar nova mensagem
+
+POST http://localhost:8080/api/mensagem
+Content-Type: application/json
+
+{
+    "usuarioId": "123",
+    "grupoId": "456",
+    "text": "Hello, World!"
+}
+
+### Atualizar mensagem
+
+PUT http://localhost:8080/api/mensagem/0c77988f-fce4-42ad-93f2-f0be7cc8f084
+Content-Type: application/json
+
+{
+    "text": "Updated message text"
+}
+
+### Deletar mensagem
+
+DELETE http://localhost:8080/api/mensagem/0c77988f-fce4-42ad-93f2-f0be7cc8f084

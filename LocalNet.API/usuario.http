@@ -1,0 +1,30 @@
+### Testar raiz
+GET http://localhost:8080
+
+### Listar usuários
+GET http://localhost:8080/api/usuario/listar
+
+### Cadastrar usuário
+POST http://localhost:8080/api/usuario/cadastrar
+Content-Type: application/json
+
+{
+    "nome" : "Othon",
+    "email" : "othon@email.com",
+    "telefone" : "4199999999"
+}
+
+### Buscar usuário
+GET http://localhost:8080/api/usuario/buscar/5bef63cb-1be6-4b30-b1f2-84a1df4e0fbf
+
+### Entrar em um grupo
+POST http://localhost:8080/api/usuario/entrar-grupo
+Content-Type: application/json
+
+{
+    "usuarioId" : "COLE_O_ID_AQUI",
+    "grupoId" : "COLE_O_ID_DO_GRUPO_AQUI"
+}
+
+### Listar usuários por grupo
+GET http://localhost:8080/api/usuario/listar-por-grupo/a18199df-20f9-492b-a31e-bee0b69815e0
