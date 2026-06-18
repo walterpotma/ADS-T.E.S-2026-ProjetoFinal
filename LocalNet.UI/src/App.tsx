@@ -1,54 +1,43 @@
-import { BrowserRouter, NavLink, Route, Routes } from 'react-router-dom';
-import ChatAppPage from './components/pages/chat/ChatAppPage';
-import GrupoCrudPage from './components/pages/chat/GrupoCrudPage';
-import LoginPage from './components/pages/usuario/LoginPage';
-import CadastroPage from './components/pages/usuario/CadastroPage';
+import { BrowserRouter, NavLink, Route, Routes, useLocation } from 'react-router-dom';
+import HomePage from './pages/HomePage';
+import LoginPage from './pages/LoginPage';
+import CadastroPage from './pages/CadastroPage';
+
+function AppHeader() {
+  const location = useLocation();
+  const rotasSemHeader = ['/chat', '/grupo'];
+  const esconderHeader = rotasSemHeader.some((rota) => location.pathname.startsWith(rota));
+
+  if (esconderHeader) return null;
+
+  return (
+    <header className="app-header">
+      <div className="app-branding">
+        <h1>LocalNet</h1>
+      </div>
+      <nav className="topbar">
+        <NavLink to="/" className={({ isActive }) => (isActive ? 'topbar-btn active' : 'topbar-btn')}>
+          Pagina Inicial
+        </NavLink>
+        <NavLink to="/login" className={({ isActive }) => (isActive ? 'topbar-btn active' : 'topbar-btn')}>
+          Login
+        </NavLink>
+        <NavLink to="/cadastrar" className={({ isActive }) => (isActive ? 'topbar-btn active' : 'topbar-btn')}>
+          Cadastrar
+        </NavLink>
+      </nav>
+    </header>
+  );
+}
 
 function App() {
   return (
     <BrowserRouter>
-      <header className="app-header">
-        <div className="app-branding">
-          <h1>Local Net</h1>
-        </div>
-        <nav className="topbar">
-          {/* Trocamos Link por NavLink e usamos a propriedade isActive */}
-          <NavLink 
-            to="/login" 
-            className={({ isActive }) => isActive ? "topbar-btn active" : "topbar-btn"}
-          >
-            Login
-          </NavLink>
-          
-          <NavLink 
-            to="/cadastro" 
-            className={({ isActive }) => isActive ? "topbar-btn active" : "topbar-btn"}
-          >
-            Cadastro
-          </NavLink>
-          
-          <NavLink 
-            to="/chat" 
-            className={({ isActive }) => isActive ? "topbar-btn active" : "topbar-btn"}
-          >
-            Chat
-          </NavLink>
-          
-          <NavLink 
-            to="/grupos" 
-            className={({ isActive }) => isActive ? "topbar-btn active" : "topbar-btn"}
-          >
-            Grupos
-          </NavLink>
-        </nav>
-      </header>
-
+      <AppHeader />
       <Routes>
-        <Route path="/" element={<LoginPage />} />
+        <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />
-        <Route path="/cadastro" element={<CadastroPage />} />
-        <Route path="/chat" element={<ChatAppPage />} />
-        <Route path="/grupos" element={<GrupoCrudPage />} />
+        <Route path="/cadastrar" element={<CadastroPage />} />
       </Routes>
     </BrowserRouter>
   );

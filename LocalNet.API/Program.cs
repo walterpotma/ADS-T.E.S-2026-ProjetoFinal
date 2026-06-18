@@ -1,7 +1,6 @@
 using LocalNet.API.Data;
 using LocalNet.API.Models;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -240,28 +239,40 @@ app.MapDelete("/api/grupo/deletar/{id}", ([FromServices] AppDataContext ctx, [Fr
 
 app.MapGet("/api/usuario/listar-por-grupo/{grupoId}", ([FromRoute] string grupoId, [FromServices] AppDataContext ctx) =>
 {
-    ArrayList usuariosDoGrupo = new ArrayList();
+    var usuarioIds = ctx.UsuarioGrupos
+        .Where(ug => ug.GrupoId == grupoId)
+        .Select(ug => ug.UsuarioId)
+        .ToList();
 
-    foreach(UsuarioGrupo ligacao in ctx.UsuarioGrupos.ToList())
-    {
-        if(ligacao.GrupoId == grupoId)
-        {
-            usuariosDoGrupo.Add(ligacao.UsuarioId);
-        }
-    }
+    var usuarios = ctx.Usuarios
+        .Where(u => usuarioIds.Contains(u.Id))
+        .ToList();
 
-    foreach (string usuarioId in usuariosDoGrupo)
+    if (usuarios.Any())
     {
-        foreach (Usuario u in ctx.Usuarios.ToList())
-        {
-            if (u.Id == usuarioId)
-            {
-                return Results.Ok(u);
-            }
-        }
+        return Results.Ok(usuarios);
     }
 
     return Results.NotFound("Nenhum usuário encontrado para este grupo.");
+});
+
+app.MapGet("/api/grupo/listar-por-usuario/{usuarioId}", ([FromRoute] string usuarioId, [FromServices] AppDataContext ctx) =>
+{
+    var grupoIds = ctx.UsuarioGrupos
+        .Where(ug => ug.UsuarioId == usuarioId)
+        .Select(ug => ug.GrupoId)
+        .ToList();
+
+    var grupos = ctx.Grupos
+        .Where(g => grupoIds.Contains(g.Id))
+        .ToList();
+
+    if (grupos.Any())
+    {
+        return Results.Ok(grupos);
+    }
+
+    return Results.NotFound("Nenhum grupo encontrado para este usuário.");
 });
 
 app.Run();
