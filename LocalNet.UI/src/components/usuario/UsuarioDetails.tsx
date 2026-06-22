@@ -1,6 +1,7 @@
 import React from 'react';
 import Usuario from '../../models/UsuarioModel';
 import { Button } from '../ui/Button';
+import '../../css/UsuarioDetails.css';
 
 interface Props {
   usuario: Usuario;
@@ -9,7 +10,7 @@ interface Props {
 
 const UsuarioDetails: React.FC<Props> = ({ usuario, aoClicarEditar }) => {
   return (
-    <div>
+    <div className="usuario-details-container">
       <h2 className="usuario-titulo">Perfil</h2>
       <div className="usuario-divisor" />
 

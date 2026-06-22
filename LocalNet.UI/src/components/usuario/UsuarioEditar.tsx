@@ -3,6 +3,7 @@ import Usuario from '../../models/UsuarioModel';
 import { Input } from '../ui/Input';
 import { Button } from '../ui/Button';
 import { atualizarUsuario } from '../../services/UsuarioService';
+import '../../css/UsuarioEditar.css';
 
 interface Props {
   usuario: Usuario;
@@ -33,7 +34,7 @@ const UsuarioEditar: React.FC<Props> = ({ usuario, aoCancelar, aoSalvar }) => {
   };
 
   return (
-    <div>
+    <div className="usuario-editar-container">
       <h2 className="usuario-titulo">Editar Perfil</h2>
       <div className="usuario-divisor" />
 
@@ -54,7 +55,9 @@ const UsuarioEditar: React.FC<Props> = ({ usuario, aoCancelar, aoSalvar }) => {
 
       <div className="usuario-botoes-container">
         <Button variant="cancel" onClick={aoCancelar} disabled={saving}>Cancelar</Button>
-        <Button variant="confirm" onClick={handleSalvar} disabled={saving}>{saving ? 'Salvando...' : 'Salvar'}</Button>
+        <Button variant="confirm" onClick={handleSalvar} disabled={saving}>
+          {saving ? 'Salvando...' : 'Salvar'}
+        </Button>
       </div>
     </div>
   );

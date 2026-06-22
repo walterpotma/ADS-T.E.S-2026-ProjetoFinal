@@ -4,14 +4,12 @@ import UsuarioEditar from '../components/usuario/UsuarioEditar';
 import { buscarUsuario } from '../services/UsuarioService';
 import Usuario from '../models/UsuarioModel';
 import '../css/UsuarioPage.css';
+import { getUsuarioConectado } from '../utils/auth';
 
 const UsuarioPage: React.FC = () => {
   const [usuario, setUsuario] = useState<Usuario | null>(null);
   const [isEditing, setIsEditing] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(true);
-
-  // ID de teste simulando o usuário que logou no LocalNet Messenger
-  const usuarioIdLogado = "5bef63cb-1be6-4b30-b1f2-84a1df4e0fbf"; 
 
   useEffect(() => {
     carregarDadosUsuario();
@@ -20,11 +18,20 @@ const UsuarioPage: React.FC = () => {
   const carregarDadosUsuario = async () => {
     setLoading(true);
     try {
-      const resposta = await buscarUsuario(usuarioIdLogado);
+      const usuarioLogado = getUsuarioConectado();
+
+      if (!usuarioLogado || !usuarioLogado.id) {  
+        console.error('Nenhum usuário conectado ou ID ausente.');
+        setLoading(false);
+        return;
+      }
+
+      const resposta = await buscarUsuario(usuarioLogado.id);
+
       if (resposta && resposta.data) {
         setUsuario(resposta.data);
       } else {
-        console.error('Erro ao carregar o usuário.');
+        console.error('Erro ao carregar os dados do usuário.');
       }
     } catch (erro) {
       console.error('Erro ao carregar o usuário:', erro);
@@ -44,18 +51,18 @@ const UsuarioPage: React.FC = () => {
     <div className="usuario-page-container">
       <div className="usuario-card">
         {isEditing ? (
-          <UsuarioEditar 
-            usuario={usuario} 
-            aoCancelar={() => setIsEditing(false)} 
+          <UsuarioEditar
+            usuario={usuario}
+            aoCancelar={() => setIsEditing(false)}
             aoSalvar={() => {
               setIsEditing(false);
-              carregarDadosUsuario(); // Atualiza a tela com os novos dados do banco
-            }} 
+              carregarDadosUsuario();
+            }}
           />
         ) : (
-          <UsuarioDetails 
-            usuario={usuario} 
-            aoClicarEditar={() => setIsEditing(true)} 
+          <UsuarioDetails
+            usuario={usuario}
+            aoClicarEditar={() => setIsEditing(true)}
           />
         )}
       </div>

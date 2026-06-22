@@ -1,0 +1,45 @@
+.usuario-editar-container {
+  width: 100%;
+}
+
+.usuario-titulo {
+  margin: 0 0 12px 0;
+  font-size: 24px;
+  color: #111b21;
+  font-weight: 600;
+}
+
+.usuario-divisor {
+  height: 1px;
+  background-color: #e9edef;
+  width: 100%;
+  margin-bottom: 25px;
+}
+
+.usuario-campo-form {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.usuario-campo-form label {
+  font-size: 13px;
+  color: #00a884; /* Tom verde institucional */
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Container que joga os botões para a direita */
+.usuario-botoes-container {
+  display: flex;
+  gap: 12px;
+  margin-top: 30px;
+  justify-content: flex-end;
+}
+
+/* Garante tamanho mínimo padrão para os botões do formulário */
+.usuario-botoes-container button {
+  min-width: 100px;
+}

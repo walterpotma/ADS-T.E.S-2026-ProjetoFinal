@@ -1,0 +1,68 @@
+/* ==========================================================================
+   LAYOUT DA PÁGINA DE USUÁRIO (USUARIOPAGE)
+   ========================================================================== */
+
+/* Container principal que ocupa a tela toda abaixo do Header */
+.usuario-page-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 64px); /* Desconta os 64px de altura padrão do AppHeader */
+  background-color: #f0f2f5;      /* Fundo cinza claro estilo WhatsApp/Messenger */
+  padding: 24px;
+  box-sizing: border-box;
+}
+
+/* Card centralizado que encapsula o Details ou o Editar */
+.usuario-card {
+  background-color: #ffffff;
+  width: 100%;
+  max-width: 480px;            /* Largura máxima confortável para leitura */
+  padding: 35px;
+  border-radius: 10px;         /* Bordas suavemente arredondadas */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06); /* Sombra leve para efeito de elevação */
+  box-sizing: border-box;
+  animation: fadeIn 0.3s ease-in-out; /* Efeito visual suave ao carregar */
+}
+
+/* Estado de Carregamento (Loading) */
+.usuario-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 64px);
+  font-size: 16px;
+  color: #667781;              /* Cor de texto secundária e discreta */
+  font-weight: 500;
+  font-family: sans-serif;
+}
+
+/* Estado de Erro (Caso o usuário não seja retornado pela API) */
+.usuario-erro {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: calc(100vh - 64px);
+  font-size: 16px;
+  font-weight: 600;
+  color: #ea0038;              /* Tom vermelho de alerta */
+  background-color: #ffe6eb;   /* Fundo avermelhado bem sutil */
+  padding: 16px 32px;
+  border-radius: 8px;
+  max-width: 340px;
+  margin: 0 auto;
+  box-shadow: 0 2px 8px rgba(234, 0, 56, 0.08);
+}
+
+/* Animação simples de transição para o Card */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

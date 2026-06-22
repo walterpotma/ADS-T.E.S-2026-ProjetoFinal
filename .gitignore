@@ -26,17 +26,6 @@ obj/
 appsettings.Development.json
 
 # ==============================
-# Banco de Dados (SQLite)
-# ==============================
-# Ignora o banco de dados para não subir dados de teste e não gerar conflitos de merge
-*.db
-*.sqlite
-*.sqlite3
-*.db-shm
-*.db-wal
-banco.db
-
-# ==============================
 # Sistema Operacional e IDEs
 # ==============================
 .vscode/

@@ -1,0 +1,51 @@
+.usuario-details-container {
+  width: 100%;
+}
+
+.usuario-titulo {
+  margin: 0 0 12px 0;
+  font-size: 24px;
+  color: #111b21;
+  font-weight: 600;
+}
+
+.usuario-divisor {
+  height: 1px;
+  background-color: #e9edef;
+  width: 100%;
+  margin-bottom: 25px;
+}
+
+.usuario-campo {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.usuario-campo label {
+  font-size: 13px;
+  color: #00a884;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.usuario-campo p {
+  margin: 0;
+  font-size: 16px;
+  color: #111b21;
+  padding: 10px 0;
+  border-bottom: 1px solid #f0f2f5;
+  word-break: break-all;
+}
+
+.usuario-acoes {
+  display: flex;
+  margin-top: 30px;
+  justify-content: flex-end;
+}
+
+.usuario-acoes button {
+  min-width: 120px;
+}

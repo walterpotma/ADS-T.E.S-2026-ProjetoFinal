@@ -3,13 +3,9 @@ import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
 import CadastroPage from './pages/CadastroPage';
 import UsuarioPage from './pages/UsuarioPage';
+import GruposPage from './pages/GruposPage';
 
 function AppHeader() {
-  const location = useLocation();
-  const rotasSemHeader = ['/chat', '/grupo'];
-  const esconderHeader = rotasSemHeader.some((rota) => location.pathname.startsWith(rota));
-
-  if (esconderHeader) return null;
 
   return (
     <header className="app-header">
@@ -26,6 +22,12 @@ function AppHeader() {
         <NavLink to="/cadastrar" className={({ isActive }) => (isActive ? 'topbar-btn active' : 'topbar-btn')}>
           Cadastrar
         </NavLink>
+        <NavLink to="/grupo" className={({ isActive }) => (isActive ? 'topbar-btn active' : 'topbar-btn')}>
+          Grupos
+        </NavLink>
+        <NavLink to="/usuario" className={({ isActive }) => (isActive ? 'topbar-btn active' : 'topbar-btn')}>
+          Usuario
+        </NavLink>
       </nav>
     </header>
   );
@@ -40,6 +42,7 @@ function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/cadastrar" element={<CadastroPage />} />
         <Route path="/usuario" element={<UsuarioPage />} />
+        <Route path="/grupo" element={<GruposPage />} />
       </Routes>
     </BrowserRouter>
   );
