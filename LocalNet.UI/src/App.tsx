@@ -2,6 +2,7 @@ import { BrowserRouter, NavLink, Route, Routes, useLocation } from 'react-router
 import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
 import CadastroPage from './pages/CadastroPage';
+import UsuarioPage from './pages/UsuarioPage';
 
 function AppHeader() {
   const location = useLocation();
@@ -38,6 +39,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/cadastrar" element={<CadastroPage />} />
+        <Route path="/usuario" element={<UsuarioPage />} />
       </Routes>
     </BrowserRouter>
   );
